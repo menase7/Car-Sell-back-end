@@ -1,0 +1,117 @@
+customer
+  -id(pk)
+  -name
+  -email(unique)
+  -image
+  -phone
+  -address
+  -status
+      -Active
+      -Inactive
+  -created_at
+  -updated_at
+
+home
+  -home_title
+  -home_heading
+  -home_description
+  -home_video
+
+about
+  -about_heading
+  -about_description
+  -about_image
+
+Brands
+  -id(pk)
+  -brand_name
+  -logo_image
+  -status
+      -Active
+      -Inactive
+  -created_at
+  -updated_at
+
+cars
+  -id(pk)
+  -name
+  -description
+  -summary
+  -stock(qty)
+  -price
+  -discounted_price(opt)
+  -images
+  -brand_id(fk)
+  -status
+      -Active
+      -Inactive
+  -created_at
+  -updated_at
+
+latest_cars
+  -id(pk)
+  -cars_id(fk)
+  -latest_car_image
+  -latest_car_heading
+
+services
+  -id(pk)
+  -service_heading
+  -service_description
+
+testimonies
+  -id(pk)
+  -customer_id(fk)
+  -product_id(fk)
+  -testimony_name
+  -testimony_message
+  -testimony_image
+  -created_at
+  -updated_at
+
+contact
+  -id(pk)
+  -contact_name
+  -contact_email
+  -contact_message
+
+footer
+  -id(pk)
+  -payment_option
+  -privacy_policy
+  -copyright_text
+
+orders
+  -id(pk)
+  -customer_id(fk)
+  -status
+      -processing
+      -confirmed
+      -shipping
+      -delivered
+      -cancelled
+  -created_at
+  -updated_at
+
+order_details
+  -id(pk)
+  -order_id(fk)
+  -product_id(fk)
+  -qty
+  -price
+  -total
+  -created_at
+  -updated_at
+    
+setting
+  -id(pk)
+  -company_name
+  -company_phone
+  -company_address
+  -company_location
+  -company_email
+  -company_facebook
+  -company_instagram
+  -company_twitter
+  -company_linkdin
+  -company_logo
