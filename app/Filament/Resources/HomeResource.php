@@ -48,6 +48,10 @@ class HomeResource extends Resource
                 TextColumn::make('home_heading'),
                 TextColumn::make('home_description'),
                 ImageColumn::make('home_video'),
+                TextColumn::make('created_at')
+                     ->dateTime('d-M-Y'),
+                TextColumn::make('updated_at')
+                     ->dateTime('d-M-Y'),
             ])
             ->filters([
                 //

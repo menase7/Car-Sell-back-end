@@ -2,6 +2,10 @@
 
 use App\Models\Home;
 use App\Models\Contact;
+use App\Models\About;
+use App\Models\Services;
+use App\Models\Footer;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +29,16 @@ Route::get('/homes', function () {
     return response()->json($resources);
 });
 
+Route::get('/about', function () {
+    $resources = About::all();
+    return response()->json($resources);
+});
+
+Route::get('/service', function () {
+    $resource = Services::all();
+    return response()->json($resource);
+});
+
 
 Route::post('/contact', function (Request $request) {
     $data = $request->only([
@@ -36,4 +50,14 @@ Route::post('/contact', function (Request $request) {
     $resource = Contact::create($data);
 
     return response()->json($resource, 201);
+});
+
+Route::get('/footer', function () {
+    $resource = Footer::all();
+    return response()->json($resource);
+});
+
+Route::get('/setting', function () {
+    $resource = Setting::all();
+    return response()->json($resource);
 });
