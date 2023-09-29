@@ -6,6 +6,7 @@ use App\Filament\Resources\CarsResource\Pages;
 use App\Filament\Resources\CarsResource\RelationManagers;
 use App\Models\Cars;
 use App\Models\Brands;
+use App\Models\Brands\RelationManagers\BrandsRelationManager;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -76,7 +77,7 @@ class CarsResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            // BrandsRelationManager::class
         ];
     }
     

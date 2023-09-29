@@ -3,6 +3,7 @@
 use App\Models\Home;
 use App\Models\Contact;
 use App\Models\About;
+use App\Models\Brands;
 use App\Models\Services;
 use App\Models\Footer;
 use App\Models\Setting;
@@ -31,6 +32,18 @@ Route::get('/homes', function () {
 
 Route::get('/about', function () {
     $resources = About::all();
+    return response()->json($resources);
+});
+
+Route::get('/brands', function () {
+    $resources = Brands::all();
+
+    // Convert the image data to base64
+    $resources->transform(function ($brand) {
+        $brand->logo_image = base64_encode($brand->logo_image);
+        return $brand;
+    });
+
     return response()->json($resources);
 });
 
