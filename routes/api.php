@@ -4,6 +4,7 @@ use App\Models\Home;
 use App\Models\Contact;
 use App\Models\About;
 use App\Models\Brands;
+use App\Models\Cars;
 use App\Models\Services;
 use App\Models\Footer;
 use App\Models\Setting;
@@ -38,14 +39,25 @@ Route::get('/about', function () {
 Route::get('/brands', function () {
     $resources = Brands::all();
 
-    // Convert the image data to base64
-    $resources->transform(function ($brand) {
-        $brand->logo_image = base64_encode($brand->logo_image);
-        return $brand;
+    // Append the image URL to each resource
+    $resources->each(function ($brand) {
+        $brand->logo_image = asset('/storage/' . $brand->logo_image);
     });
 
     return response()->json($resources);
 });
+
+Route::get('/cars', function () {
+    $resources = Cars::all();
+
+    // Append the image URL to each resource
+    $resources->each(function ($cars) {
+        $cars->images = asset('/storage/' . $cars->images);
+    });
+
+    return response()->json($resources);
+});
+
 
 Route::get('/service', function () {
     $resource = Services::all();

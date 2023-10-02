@@ -6,7 +6,7 @@ use App\Filament\Resources\CarsResource\Pages;
 use App\Filament\Resources\CarsResource\RelationManagers;
 use App\Models\Cars;
 use App\Models\Brands;
-use App\Models\Brands\RelationManagers\BrandsRelationManager;
+use App\Filament\Resources\BrandsResource\RelationManagers\BrandsRelationManager;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -35,13 +35,13 @@ class CarsResource extends Resource
                 TextInput::make('price'),
                 TextInput::make('discounted_price'),
                 FileUpload::make('images'),
-                // Select::make('brands_id')
-                // ->label('Brand')
-                // ->options(Brands::all()->pluck('name', 'id')),
+                Select::make('brands_id')
+                       ->label('Brand')
+                       ->options(Brands::pluck('brand_name', 'id')->all()),
                 Select::make('status')->options([
                     'Active' => 'Active',
                     'Inactive' => 'Inactive',
-                ])
+                ]),
             ]);
     }
 
@@ -77,7 +77,7 @@ class CarsResource extends Resource
     public static function getRelations(): array
     {
         return [
-            // BrandsRelationManager::class
+             BrandsRelationManager::class
         ];
     }
     
