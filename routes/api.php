@@ -1,13 +1,15 @@
 <?php
 
-use App\Models\Home;
-use App\Models\Contact;
-use App\Models\About;
-use App\Models\Brands;
-use App\Models\Cars;
-use App\Models\Services;
-use App\Models\Footer;
-use App\Models\Setting;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\BrandsController;
+use App\Http\Controllers\CarsController;
+use App\Http\Controllers\Latest_CarsController;
+use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\TestimoniesController;
+use App\Http\Controllers\FooterController;
+use App\Http\Controllers\SettingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,63 +28,23 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/homes', function () {
-    $resources = Home::all();
-    return response()->json($resources);
-});
+Route::get('/homes', [HomeController::class, 'index']);
 
-Route::get('/about', function () {
-    $resources = About::all();
-    return response()->json($resources);
-});
+Route::get('/about', [AboutController::class, 'index']);
 
-Route::get('/brands', function () {
-    $resources = Brands::all();
+Route::get('/brands', [BrandsController::class, 'index']);
 
-    // Append the image URL to each resource
-    $resources->each(function ($brand) {
-        $brand->logo_image = asset('/storage/' . $brand->logo_image);
-    });
+Route::get('/cars', [CarsController::class, 'index']);
 
-    return response()->json($resources);
-});
-
-Route::get('/cars', function () {
-    $resources = Cars::all();
-
-    // Append the image URL to each resource
-    $resources->each(function ($cars) {
-        $cars->images = asset('/storage/' . $cars->images);
-    });
-
-    return response()->json($resources);
-});
+Route::get('/latestcars', [Latest_CarsController::class, 'index']);
 
 
-Route::get('/service', function () {
-    $resource = Services::all();
-    return response()->json($resource);
-});
+Route::get('/service', [ServicesController::class, 'index']);
 
+Route::get('/testimonies', [TestimoniesController::class, 'index']);
 
-Route::post('/contact', function (Request $request) {
-    $data = $request->only([
-        'contact_name',
-        'contact_email',
-        'contact_message',
-    ]);
+Route::post('/contact', [ContactController::class, 'store']);
 
-    $resource = Contact::create($data);
+Route::get('/footer', [FooterController::class, 'index']);
 
-    return response()->json($resource, 201);
-});
-
-Route::get('/footer', function () {
-    $resource = Footer::all();
-    return response()->json($resource);
-});
-
-Route::get('/setting', function () {
-    $resource = Setting::all();
-    return response()->json($resource);
-});
+Route::get('/setting', [SettingController::class, 'index']);

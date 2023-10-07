@@ -19,7 +19,7 @@ return new class extends Migration
             $table->double('price');
             $table->double('discounted_price');
             $table->text('images');
-            $table->foreignIdFor(Brands::class)->constrained();
+            $table->foreignIdFor(Brands::class)->constrained()->cascadeOnDelete();
             $table->enum('status',['Active','Inactive'])->default('Active');
             $table->timestamps();
         });

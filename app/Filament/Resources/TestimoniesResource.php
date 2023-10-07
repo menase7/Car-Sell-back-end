@@ -12,6 +12,12 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\FileUpload;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ImageColumn;
+
+
 
 class TestimoniesResource extends Resource
 {
@@ -23,7 +29,11 @@ class TestimoniesResource extends Resource
     {
         return $form
             ->schema([
-                //
+                TextInput::make('customer_id')->required(),
+                TextInput::make('cars_id')->required(),
+                TextInput::make('name')->required(),
+                TextInput::make('message')->required(),
+                FileUpload::make('image')->required(),
             ]);
     }
 
@@ -31,13 +41,18 @@ class TestimoniesResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('customer_id'),
+                TextColumn::make('cars_id'),
+                TextColumn::make('name'),
+                TextColumn::make('message'),
+                ImageColumn::make('image'),
             ])
             ->filters([
-                //
+                
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

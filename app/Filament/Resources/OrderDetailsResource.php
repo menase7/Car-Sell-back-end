@@ -4,7 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\OrderDetailsResource\Pages;
 use App\Filament\Resources\OrderDetailsResource\RelationManagers;
-use App\Models\OrderDetails;
+use App\Models\Order_details;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -17,7 +17,7 @@ use Filament\Tables\Columns\TextColumn;
 
 class OrderDetailsResource extends Resource
 {
-    protected static ?string $model = OrderDetails::class;
+    protected static ?string $model = Order_details::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-folder-plus';
 

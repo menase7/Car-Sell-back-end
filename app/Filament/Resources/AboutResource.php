@@ -24,6 +24,8 @@ class AboutResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-oval-left';
 
+    protected static ?int $navigationSort = 2;
+
     public static function form(Form $form): Form
     {
         return $form

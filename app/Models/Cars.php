@@ -19,11 +19,13 @@ class Cars extends Model
         'brands_id',
     ];
 
-    public function Brands(){
+    public function Brands()
+    {
         return $this->belongsTo(Brands::class);
     }
 
-    public function Testimonies(){
+    public function Testimonies()
+    {
         return $this->hasMany(Testimonies::class);
     }
 }
